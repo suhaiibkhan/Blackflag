@@ -14,8 +14,7 @@ public class Product {
 
 	private String name;
 	private Double price;
-//	private String category;
-
+	
 	// Constructors
 	public Product() {
 	}
@@ -23,7 +22,6 @@ public class Product {
 	public Product(String name, Double price, String category) {
 		this.name = name;
 		this.price = price;
-//		this.category = category;
 	}
 
 	// Getters and Setters
@@ -50,10 +48,4 @@ public class Product {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-
-	/*
-	 * public String getCategory() { return category; }
-	 * 
-	 * public void setCategory(String category) { this.category = category; }
-	 */
 }
