@@ -31,9 +31,15 @@ public class UserController {
 	}
 
 	@PostMapping
-	public ResponseEntity<User> createUser(@RequestBody User user) {
-		User createdUser = userService.createUser(user);
-		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+	public ResponseEntity<String> createUser(@RequestBody User user) {
+
+		try {
+			userService.createUser(user);
+			return ResponseEntity.ok("User registered successfully");
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+
 	}
 
 	@PutMapping("/{id}")

@@ -1,6 +1,7 @@
 package com.BlackFlag.project.services;
 
 import com.BlackFlag.project.models.User;
+
 import com.BlackFlag.project.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDateTime;
 
 @Service
 public class UserService {
@@ -27,6 +29,11 @@ public class UserService {
 	}
 
 	public User createUser(User user) {
+
+		if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+			throw new IllegalArgumentException("Email is already in use");
+		}
+
 		return userRepository.save(user);
 	}
 
@@ -40,4 +47,5 @@ public class UserService {
 	public void deleteUser(Long id) {
 		userRepository.deleteById(id);
 	}
+
 }
